@@ -64,7 +64,7 @@ namespace generator {
       std::shared_ptr<TypeFunc> tf = create_func_type(fd);
       std::vector<std::string> name_args;
       if (fd->declarator->args.size() > 6) {
-        // TODO: the maximum number of arguments of function is 6 in lup
+        // TODO: the maximum number of arguments of function is 6 in l4t
         assert(false);
       }
       for (std::shared_ptr<ASTSimpleDeclaration> d: fd->declarator->args) {
@@ -81,7 +81,7 @@ namespace generator {
       // push arguments
       code += "sub rsp, " + std::to_string((int)name_args.size() * 8) + "\n";
       for (int i=0; i < (int)name_args.size(); i++) {
-        // all size of vars are 8 byte (64bit) in this lupc
+        // all size of vars are 8 byte (64bit) in this l4tc
         ctx->rsp -= 8;
         // add vars in function arguments to local vars
         ctx->add_local_var(name_args[i], tf->type_args[i]);
@@ -102,7 +102,7 @@ namespace generator {
       // sub number of declarators * 8 from rsp
       code += "sub rsp, " + std::to_string((int)n->declarators.size() * 8) + "\n";
       for (std::shared_ptr<ASTDeclarator> d: n->declarators) {
-        // all size of vars are 8 byte (64bit) in this lupc
+        // all size of vars are 8 byte (64bit) in this l4tc
         ctx->rsp -= 8;
         // add vars in function arguments to local vars
         ctx->add_local_var(std::string(d->op->sv), create_type(d, base_type));

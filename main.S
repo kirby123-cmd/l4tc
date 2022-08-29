@@ -11,7 +11,7 @@ push r10
 pop r10
 mov r10, [r10]
 cmp r10, 0
-setnz r8b
+setnz r10b
 jz L0
 lea r10, [rbp - 8]
 push r10
@@ -24,7 +24,7 @@ sub r10, r11
 push r10
 pop r10
 cmp r10, 0
-setnz r8b
+setnz r10b
 jz L2
 .global fib
 mov r10, [rip + fib@GOTPCREL]
